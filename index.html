@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+
+        let userScore = 0;
+        let computerScore = 0;
+
+        function computerPlay() {
+                    let randomNum = Math.floor(Math.random() * 3) + 1;
+                    if (randomNum === 1) {
+                        return "rock"
+                    } else if (randomNum === 2) {
+                        return "paper"
+                    } else {
+                        return "scissors"
+                    }
+                };
+
+        function game() {
+            for (let i = 1; i < 6; i++) {
+
+                let playerSelection = prompt(`Best of 5!! Game #${i} of 5. Choose either 'rock', 'paper', or 'scissors'`).toLowerCase();
+                while (playerSelection !== "rock" && playerSelection !== "scissors" && playerSelection !== "paper") {
+                    playerSelection = prompt('That\'s not an option!! choose \'rock\', \'paper\', or \'scissors\'').toLowerCase();
+                }
+                const computerSelection = computerPlay();
+
+
+
+                function playRound(playerSelection, computerSelection) {
+                    if (playerSelection == "rock") {
+                        if (computerSelection == "rock") {
+                            return "are tied!"
+                        } else if (computerSelection == "paper") {
+                            computerScore++;
+                            return "lose!";
+                        } else {
+                            userScore++;
+                            return "win!";
+                        }
+                    } else if (playerSelection == "paper") {
+                        if (computerSelection == "Rock") {
+                            userScore++;
+                            return "win!";
+                        } else if (computerSelection == "paper") {
+                            return "are tied!"
+                        } else {
+                            computerScore++;
+                            return "lose!";
+                        }
+                    } else if (playerSelection == "scissors") {
+                        if (computerSelection == "rock") {
+                            computerScore++;
+                            return "lose!";
+                        } else if (computerSelection == "paper") {
+                            userScore++;
+                            return "win!";
+                        } else {
+                            return "are tied!"
+                        }
+                    };
+                }
+
+
+
+            console.log(`You played ${playerSelection} and your opponent played ${computerSelection}. You ${playRound(playerSelection, computerSelection)} `)
+            console.log(`Your score is ${userScore} and your opponent's score is ${computerScore}.`)
+            }   
+        };
+
+        game();
+        console.log(`Game Over!! Final Score---- You have ${userScore} points. Your opponent has ${computerScore} points.`)
+        if (userScore > computerScore) {
+            console.log("you win!!")
+         } else if (userScore == computerScore) {
+            console.log("you tied!!")
+         } else {
+            console.log("you lose!!");
+         } 
+            
+        
+
+    </script>
+</body>
+</html>
